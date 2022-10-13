@@ -1,6 +1,5 @@
 let playerOneSelection = [];
 let playerTwoSelection = [];
-
 let playerTurn = 0;
 
 const winCombos = [
@@ -13,7 +12,6 @@ const winCombos = [
   ["11", "22", "33"],
   ["13", "22", "31"],
 ];
-
 // Býr til 3x3 borð
 function createBoard() {
   let board = document.createElement("div");
@@ -39,15 +37,36 @@ document.addEventListener("click", function () {
     if (playerTurn % 2 == 0) {
       event.target.classList.add("playerOne");
       playerOneSelection.push(event.target.getAttribute("id"));
-      playerOneSelection = playerOneSelection.sort();
+      checkWinner(playerOneSelection);
       playerTurn++;
     } else {
       event.target.classList.add("playerTwo");
       playerTwoSelection.push(event.target.getAttribute("id"));
+      checkWinner(playerTwoSelection);
       playerTurn++;
     }
   }
 });
 
+function initGame() {
+  playerOneSelection = [];
+  playerTwoSelection = [];
+  playerTurn = 0;
+}
+
+function checkWinner(playerArray) {
+  sortedArray = playerArray.sort();
+  for (let i = 0; i < winCombos.length; i++) {
+    if (winCombos[i].includes(sortedArray)) {
+      console.log("winner");
+    } else {
+      console.log("winCombos " + winCombos[i]);
+      console.log("playerSelection " + sortedArray);
+    }
+  }
+}
+
 // initialize game
 createBoard();
+
+initGame();
