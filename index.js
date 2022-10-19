@@ -3,14 +3,14 @@ let playerTwoSelection = [];
 let playerTurn = 0;
 
 const winCombos = [
-  ["11", "12", "13"],
-  ["21", "22", "23"],
-  ["31", "32", "33"],
-  ["11", "21", "31"],
-  ["12", "22", "32"],
-  ["13", "23", "33"],
-  ["11", "22", "33"],
-  ["13", "22", "31"],
+  [11, 12, 13],
+  [21, 22, 23],
+  [31, 32, 33],
+  [11, 21, 31],
+  [12, 22, 32],
+  [13, 23, 33],
+  [11, 22, 33],
+  [13, 22, 31],
 ];
 // Býr til 3x3 borð
 function createBoard() {
@@ -32,17 +32,17 @@ function createBoard() {
   document.body.appendChild(board);
 }
 
+
+
 document.addEventListener("click", function () {
   if (event.target.className == "cell") {
     if (playerTurn % 2 == 0) {
-      event.target.classList.add("playerOne");
-      playerOneSelection.push(event.target.getAttribute("id"));
-      checkWinner(playerOneSelection);
+      event.target.insertAdjacentText('beforeend', 'X');
+      event.target.classList.add("clicked");
       playerTurn++;
     } else {
-      event.target.classList.add("playerTwo");
-      playerTwoSelection.push(event.target.getAttribute("id"));
-      checkWinner(playerTwoSelection);
+      event.target.insertAdjacentText('beforeend', 'O');
+      event.target.classList.add("clicked");
       playerTurn++;
     }
   }
@@ -52,21 +52,18 @@ function initGame() {
   playerOneSelection = [];
   playerTwoSelection = [];
   playerTurn = 0;
+  const boards = document.querySelectorAll('.board');
+  boards.forEach(board => {
+    board.remove();
+  });
+  createBoard();
+
 }
 
-function checkWinner(playerArray) {
-  sortedArray = playerArray.sort();
-  for (let i = 0; i < winCombos.length; i++) {
-    if (winCombos[i].includes(sortedArray)) {
-      console.log("winner");
-    } else {
-      console.log("winCombos " + winCombos[i]);
-      console.log("playerSelection " + sortedArray);
-    }
-  }
+function checkWinner() {
+
 }
 
 // initialize game
-createBoard();
 
 initGame();

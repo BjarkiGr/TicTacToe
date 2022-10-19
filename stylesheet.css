@@ -3,6 +3,12 @@
   justify-content: center;
 }
 
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+
 .row {
   flex-direction: row;
 }
@@ -16,30 +22,6 @@
   font-size: 70px;
   cursor: pointer;
   align-items: center;
-}
-
-.playerOne:after {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  content: "\274c";
-  font-size: 50px;
-  color: #fff;
-  line-height: 100px;
-  text-align: center;
-}
-
-.playerTwo:after {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  content: "\25CF";
-  font-size: 50px;
-  color: red;
-  line-height: 100px;
-  text-align: center;
 }
 
 .restart {
